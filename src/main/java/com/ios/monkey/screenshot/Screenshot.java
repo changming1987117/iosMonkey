@@ -10,10 +10,10 @@ import com.ios.monkey.util.Utils;
 
 public class Screenshot {
 	
-	public static void screenshot(String UDID, int x, int y) {
-		String path = System.getProperty("user.dir");
-		String screenshotPath = path + "/output/ios_monkey.jpeg";
-		String screenshotPath2 = path + "/output/ios_monkey_" + Utils.currentTime() + "_" + x + "_" + y +".jpeg";
+	public static void screenshot(String path, String UDID, int x, int y) {
+		//String path = System.getProperty("user.dir");
+		String screenshotPath = path + "/ios_monkey.png";
+		String screenshotPath2 = path + "/ios_monkey_" + Utils.currentTime() + "_" + x + "_" + y +".png";
 		if(UDID.contains("-")) {
 			try {
 				Process pp = Runtime.getRuntime().exec("xcrun simctl io booted screenshot --type=jpeg " + screenshotPath);

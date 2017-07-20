@@ -20,7 +20,7 @@ public class Monkey {
     private MacacaClient driver;
     private int width, height, submitX_mim, submitX_max, submitY_mim, submitY_max, contentX_min, contentX_max, contentY_mim, contentY_max, special_point_x, special_point_y;
     private static boolean needhelp = false;
-    private static String UDID, BUNDLEID, APPPATH, REUSE;
+    private static String UDID, BUNDLEID, APPPATH, REUSE, RESULT_DIR;
     
     // 默认允许180分钟
     private static String TIMING = "180";
@@ -50,6 +50,8 @@ public class Monkey {
                 BUNDLEID = args[++optSetting];
             } else if ("-t".equals(args[optSetting])) {
             	TIMING = args[++optSetting];
+            } else if ("-d".equals(args[optSetting])) {
+                RESULT_DIR = args[++optSetting];
             } else if ("-host".equals(args[optSetting])) {
                 HOST = args[++optSetting];
             } else if ("-reuse".equals(args[optSetting])) {
@@ -127,16 +129,17 @@ public class Monkey {
                 case 1: {
                 	double startX = Math.ceil(Math.random() * (width - 1));
                     double startY = Math.ceil(Math.random() * (height - 1));
+                    double endX = Math.ceil(Math.random() * (width - 1));
                     double endY = Math.ceil(Math.random() * (height - 1));
                     
-                	Screenshot.screenshot(UDID, new Double(startX).intValue(), new Double(endY).intValue());
-                    new MonkeySwipeEvent(driver, startX, startY, endY).injectEvent();
+                	Screenshot.screenshot(RESULT_DIR, UDID, new Double(startX).intValue(), new Double(endY).intValue());
+                    new MonkeySwipeEvent(driver, startX, startY, endX, endY).injectEvent();
                     eventcount = eventcount+1;
                     System.out.println("---EVENT执行了："+eventcount+"次---");
                     break;
                 }
                 case 2: {
-                	Screenshot.screenshot(UDID, backX, backY);
+                	Screenshot.screenshot(RESULT_DIR, UDID, backX, backY);
                     new MonkeyBackEvent(driver, backX, backY).injectEvent();
                     eventcount = eventcount+1;
                     System.out.println("---EVENT执行了："+eventcount+"次---");
@@ -147,7 +150,7 @@ public class Monkey {
                     int x = random.nextInt(submitX_max) % (submitX_max - submitX_mim + 1) + submitX_mim;
                     int y = random.nextInt(submitY_max) % (submitY_max - submitY_mim + 1) + submitY_mim;
                 	
-                	Screenshot.screenshot(UDID, x, y);
+                	Screenshot.screenshot(RESULT_DIR, UDID, x, y);
                     new MonkeySubmitEvent(driver, x, y).injectEvent();
                     eventcount = eventcount+1;
                     System.out.println("---EVENT执行了："+eventcount+"次---");
@@ -158,14 +161,14 @@ public class Monkey {
                     int x = random.nextInt(contentX_max) % (contentX_max - contentX_min + 1) + contentX_min;
                     int y = random.nextInt(contentY_max) % (contentY_max - contentY_mim + 1) + contentY_mim;
                     
-                	Screenshot.screenshot(UDID, x, y);
+                	Screenshot.screenshot(RESULT_DIR, UDID, x, y);
                     new MonkeyContentEvent(driver, x, y).injectEvent();
                     eventcount = eventcount+1;
                     System.out.println("---EVENT执行了："+eventcount+"次---");
                     break;
                 }
                 case 5: {
-                	Screenshot.screenshot(UDID, special_point_x, special_point_y);
+                	Screenshot.screenshot(RESULT_DIR, UDID, special_point_x, special_point_y);
                     new MonkeyTapSpecialPointEvent(driver, special_point_x, special_point_y).injectEvent();
                     eventcount = eventcount+1;
                     System.out.println("---EVENT执行了："+eventcount+"次---");
