@@ -43,8 +43,4 @@ public class Screenshot {
 		}
 	}
 	
-	@Test
-	public void f() {
-		screenshot("1C0B46D2-E3A8-4151-843B-E12193169967", 600, 900);
-	}
 }
