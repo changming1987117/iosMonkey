@@ -20,7 +20,7 @@ public class Monkey {
     private MacacaClient driver;
     private int width, height, submitX_mim, submitX_max, submitY_mim, submitY_max, contentX_min, contentX_max, contentY_mim, contentY_max, special_point_x, special_point_y;
     private static boolean needhelp = false;
-    private static String UDID, BUNDLEID, APPPATH, REUSE, RESULT_DIR;
+    private static String UDID, BUNDLEID, APPPATH, RESULT_DIR;
     
     // 默认允许180分钟
     private static String TIMING = "180";
