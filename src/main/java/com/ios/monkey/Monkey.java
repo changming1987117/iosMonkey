@@ -120,7 +120,7 @@ public class Monkey {
                     double x = Math.ceil(Math.random() * (width - 1));
                     double y = Math.ceil(Math.random() * (height - 1));
                     
-                    Screenshot.screenshot(UDID, new Double(x).intValue(), new Double(y).intValue());
+                    Screenshot.screenshot(RESULT_DIR, UDID, new Double(x).intValue(), new Double(y).intValue());
                     new MonkeyTapEvent(driver, x, y).injectEvent();
                     eventcount = eventcount+1;
                     System.out.println("---EVENT执行了："+eventcount+"次---");
