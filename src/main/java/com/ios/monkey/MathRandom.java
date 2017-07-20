@@ -24,7 +24,7 @@ public class MathRandom {
     
     public static double EVENT_TYPE_SPECIAL_POINT = 0.05;
     
-    public static double  EVENT_TYPE_HOMEKEY = 0.02;
+    public static double  EVENT_TYPE_HOMEKEY = 0;
     
 
 

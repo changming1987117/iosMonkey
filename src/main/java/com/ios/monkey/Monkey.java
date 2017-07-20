@@ -20,12 +20,14 @@ public class Monkey {
     private MacacaClient driver;
     private int width, height, submitX_mim, submitX_max, submitY_mim, submitY_max, contentX_min, contentX_max, contentY_mim, contentY_max, special_point_x, special_point_y;
     private static boolean needhelp = false;
-    private static String UDID, BUNDLEID;
+    private static String UDID, BUNDLEID, APPPATH, REUSE;
     
     // 默认允许180分钟
     private static String TIMING = "180";
     private static String PORT = "3456";
+    private static String HOST = "127.0.0.1";
     private static String PROXYPORT = "8900";
+    private static String REUSE = "3";
     private int backX = 25, backY = 40;
     private int eventcount = 0;
 
@@ -42,19 +44,28 @@ public class Monkey {
         for (; optSetting < args.length; optSetting++) {
             if ("-u".equals(args[optSetting])) {
                 UDID = args[++optSetting];
+            } else if ("-a".equals(args[optSetting])) {
+                APPPATH = args[++optSetting];
             } else if ("-b".equals(args[optSetting])) {
                 BUNDLEID = args[++optSetting];
             } else if ("-t".equals(args[optSetting])) {
             	TIMING = args[++optSetting];
+            } else if ("-host".equals(args[optSetting])) {
+                HOST = args[++optSetting];
+            } else if ("-reuse".equals(args[optSetting])) {
+                REUSE = args[++optSetting];
             } else if ("-port".equals(args[optSetting])) {
             	PORT = args[++optSetting];
             } else if ("-proxyport".equals(args[optSetting])) {
-            	PROXYPORT = args[++optSetting];
+                PROXYPORT = args[++optSetting];
             } else if ("-h".equals(args[optSetting])) {
                 needhelp = true;
                 System.out.println(
                         "-u:设备的UDID\n" +
+                        "-a:测试App的绝对路径\n"+
                         "-b:测试App的Bundle\n"+
+                        "-host:macaca服务器host\n"+
+                        "-reuse:0: 启动并安装 app。1 (默认): 卸载并重装 app。 2: 仅重装 app。3: 在测试结束后保持 app 状态。\n"+
                         "-t:运行时长（分），可选，默认180分钟\n"+
                         "-port:macaca服务的端口，默认3456\n" +
                         "-proxyport:usb代理端口，默认8900");
@@ -182,14 +193,14 @@ public class Monkey {
         driver = new MacacaClient();
         JSONObject porps = new JSONObject();
         porps.put("platformName", "ios");
-        porps.put("reuse", 3);
+        porps.put("reuse", Integer.parseInt(REUSE));
         porps.put("bundleId", BUNDLEID);
         porps.put("udid", UDID);
         porps.put("autoAcceptAlerts", true);
         porps.put("proxyPort", Integer.parseInt(PROXYPORT));
         JSONObject desiredCapabilities = new JSONObject();
         desiredCapabilities.put("desiredCapabilities", porps);
-        desiredCapabilities.put("host", "127.0.0.1");
+        desiredCapabilities.put("host", HOST);
         desiredCapabilities.put("port", Integer.parseInt(PORT));
         try {
             driver.initDriver(desiredCapabilities);
