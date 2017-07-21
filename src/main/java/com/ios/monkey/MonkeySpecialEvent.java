@@ -7,6 +7,7 @@ import macaca.client.MacacaClient;
  * Created by cm on 2017.7.21 酷狗app特殊的需要
  */
 public class MonkeySpecialEvent extends MonkeyEvent{
+    private double startX, startY, endX, endY;
     private MacacaClient driver;
 
 
