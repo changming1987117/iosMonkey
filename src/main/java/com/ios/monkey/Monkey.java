@@ -115,7 +115,7 @@ public class Monkey {
         special_point_y = (int) (height * 0.94);
 
         // 卸载安装需要划过闪屏页
-        if((Integer) REUSE!=3){
+        if(REUSE!="3"){
             double startX = Math.ceil(0.9 * (width - 1));
             double startY = Math.ceil(0.5 * (height - 1));
             double endX = Math.ceil(0.1 * (width - 1));
