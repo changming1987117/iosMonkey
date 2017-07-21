@@ -5,7 +5,7 @@ import com.ios.monkey.screenshot.Screenshot;
 import com.ios.monkey.util.Shell;
 
 import macaca.client.MacacaClient;
-
+import Thread;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Random;
@@ -116,6 +116,7 @@ public class Monkey {
 
         // 卸载安装需要划过闪屏页
         if(REUSE!="3"){
+            Thread.sleep(3000);
             double startX = Math.ceil(0.9 * (width - 1));
             double startY = Math.ceil(0.5 * (height - 1));
             double endX = Math.ceil(0.1 * (width - 1));
