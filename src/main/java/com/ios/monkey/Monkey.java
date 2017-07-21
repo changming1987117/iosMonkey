@@ -114,6 +114,14 @@ public class Monkey {
         special_point_x = width / 2;
         special_point_y = (int) (height * 0.94);
 
+        // 卸载安装需要划过闪屏页
+        if((Integer) REUSE!=3){
+            double startX = Math.ceil(0.9 * (width - 1));
+            double startY = Math.ceil(0.5 * (height - 1));
+            double endX = Math.ceil(0.1 * (width - 1));
+            double endY = Math.ceil(0.5 * (height - 1));
+            new MonkeySpecialEvent(driver, startX, startY, endX, endY).injectEvent();
+        }
         while (true) {
             switch (new MathRandom().PercentageRandom()) {
                 case 0: {
@@ -198,6 +206,7 @@ public class Monkey {
         porps.put("platformName", "ios");
         porps.put("reuse", Integer.parseInt(REUSE));
         porps.put("bundleId", BUNDLEID);
+        porps.put("app", APPPATH);
         porps.put("udid", UDID);
         porps.put("autoAcceptAlerts", true);
         porps.put("proxyPort", Integer.parseInt(PROXYPORT));
