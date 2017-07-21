@@ -222,6 +222,6 @@ public class Monkey {
                     "*******************************************\n");
         }
         //启动app守护进程
-        Shell.launchAPP(UDID, BUNDLEID, startTime, TIMING);
+        // Shell.launchAPP(UDID, BUNDLEID, startTime, TIMING);
     }
 }
