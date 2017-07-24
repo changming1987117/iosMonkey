@@ -26,14 +26,8 @@ public class MonkeySpecialEvent extends MonkeyEvent{
         // 循环4次左滑
         for(int i = 0; i<4; i++){
             System.out.println("sending Swipe Event : Swipe-> [start(" + startX + "," + startY + "), end(" + endX + "," + endY+")]");
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("fromX", startX);
-            jSONObject.put("fromY", startY);
-            jSONObject.put("toX", endX);
-            jSONObject.put("toY", endY);
-            jSONObject.put("duration", 1);
-            driver.touch("tap", jSONObject);
-            //driver.touchAsync("tap", jSONObject);
+            driver.drag(startX,startY,endX,endY,2,50);
+            Thread.sleep(2000);
         }
 
         return MonkeyEvent.INJECT_SUCCESS;

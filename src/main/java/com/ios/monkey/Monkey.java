@@ -116,7 +116,7 @@ public class Monkey {
         // 卸载安装需要划过闪屏页
         if(REUSE!="3"){
             Thread.sleep(6000);
-            double startX = Math.ceil(0.5 * (width - 1));
+            double startX = Math.ceil(0.8 * (width - 1));
             double startY = Math.ceil(0.5 * (height - 1));
             double endX = Math.ceil(0.25 * (width - 1));
             double endY = Math.ceil(0.5 * (height - 1));
