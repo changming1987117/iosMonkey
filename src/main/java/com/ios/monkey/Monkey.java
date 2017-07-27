@@ -221,7 +221,7 @@ public class Monkey {
                     "*******************************************\n");
         }
     }
-}
+
 
     private void init(long startTime) throws IOException, InterruptedException {
         driver = new MacacaClient();
