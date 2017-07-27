@@ -94,9 +94,7 @@ public class Monkey {
 
     private void run() throws Exception {
     	System.out.println("本次设定的运行时长【" + TIMING + "】分钟");
-    	long startTime = System.currentTimeMillis();
-        init_install();
-        init(startTime);
+        init();
         width = (Integer) driver.getWindowSize().get("width");
         height = (Integer) driver.getWindowSize().get("height");
         NumberFormat numberFormat = NumberFormat.getInstance();
@@ -115,14 +113,18 @@ public class Monkey {
         special_point_y = (int) (height * 0.94);
 
         // 卸载安装需要划过闪屏页
-        if(REUSE=="3"){
-            Thread.sleep(6000);
+        if(REUSE!="3"){
+            driver.acceptAlert();
+            Thread.sleep(3000);
+            driver.acceptAlert();
+            Thread.sleep(3000);
             double startX = Math.ceil(0.8 * (width - 1));
             double startY = Math.ceil(0.5 * (height - 1));
             double endX = Math.ceil(0.25 * (width - 1));
             double endY = Math.ceil(0.5 * (height - 1));
             new MonkeySpecialEvent(driver, startX, startY, endX, endY).injectEvent();
         }
+        long startTime = System.currentTimeMillis();
         while (true) {
             switch (new MathRandom().PercentageRandom()) {
                 case 0: {
@@ -199,31 +201,8 @@ public class Monkey {
 
         }
     }
-    private void init_install() throws IOException, InterruptedException {
-        driver = new MacacaClient();
-        JSONObject porps = new JSONObject();
-        porps.put("platformName", "ios");
-        porps.put("reuse", 1);
-        porps.put("bundleId", BUNDLEID);
-        porps.put("app", APPPATH);
-        porps.put("udid", UDID);
-        porps.put("autoAcceptAlerts", true);
-        porps.put("proxyPort", Integer.parseInt(PROXYPORT));
-        JSONObject desiredCapabilities = new JSONObject();
-        desiredCapabilities.put("desiredCapabilities", porps);
-        desiredCapabilities.put("host", HOST);
-        desiredCapabilities.put("port", Integer.parseInt(PORT));
-        try {
-            driver.initDriver(desiredCapabilities);
-        } catch (Exception e) {
-            System.out.println("*******************************************\n\n\n" +
-                    "请在命令行输入 macaca server --verbose 启动服务\n\n\n" +
-                    "*******************************************\n");
-        }
-    }
-
-
-    private void init(long startTime) throws IOException, InterruptedException {
+    
+    private void init() throws IOException, InterruptedException {
         driver = new MacacaClient();
         JSONObject porps = new JSONObject();
         porps.put("platformName", "ios");
