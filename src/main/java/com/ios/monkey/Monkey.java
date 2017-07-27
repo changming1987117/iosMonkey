@@ -200,8 +200,9 @@ public class Monkey {
         	}
 
         }
+        driver.quit();
     }
-    
+
     private void init() throws IOException, InterruptedException {
         driver = new MacacaClient();
         JSONObject porps = new JSONObject();
