@@ -217,7 +217,7 @@ public class Monkey {
         driver = new MacacaClient();
         JSONObject porps = new JSONObject();
         porps.put("platformName", "ios");
-        porps.put("reuse", 3);
+        porps.put("reuse", Integer.parseInt(REUSE));
         porps.put("bundleId", BUNDLEID);
         porps.put("app", APPPATH);
         porps.put("udid", UDID);
