@@ -94,10 +94,18 @@ public class Monkey {
     private void run() throws Exception {
         System.out.println("本次设定的运行时长【" + TIMING + "】分钟");
         init();
-        driver.acceptAlert();
-        Thread.sleep(3000);
-        driver.acceptAlert();
-        Thread.sleep(3000);
+        try {
+            driver.acceptAlert();
+            Thread.sleep(3000);
+        }catch (Exception e) {
+            System.out.println("找不到对话框");
+        }
+        try {
+            driver.acceptAlert();
+            Thread.sleep(3000);
+        }catch (Exception e) {
+            System.out.println("找不到对话框");
+        }
         JSONObject rect = new JSONObject();
         rect = driver.getWindowSize();
         width = (Integer) rect.get("width");
