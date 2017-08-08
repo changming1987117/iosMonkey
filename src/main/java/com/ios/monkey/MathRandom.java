@@ -8,7 +8,7 @@ public class MathRandom {
     /**
      * 0出现的概率为%40
      */
-    public static double EVENT_TYPE_TAP = 0.38;
+    public static double EVENT_TYPE_TAP = 0.4;
     /**
      * 1出现的概率为%30
      */
@@ -22,7 +22,7 @@ public class MathRandom {
 
     public static double EVENT_TYPE_CONTENT = 0.05;
     
-    public static double EVENT_TYPE_SPECIAL_POINT = 0.05;
+    public static double EVENT_TYPE_SPECIAL_POINT = 0;
     
     public static double  EVENT_TYPE_HOMEKEY = 0;
     
